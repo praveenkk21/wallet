@@ -1,15 +1,13 @@
-spring:
-  application:
-    name: UserService
-
-server:
-  port: 8082
-
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://localhost:8762/eureka/
   instance:
     prefer-ip-address: true
 
-
+#cors:
+#  allowed-origins: "http://localhost:3000"  # React app URL
+#  allowed-methods: "GET, POST, PUT, DELETE"
+#  allowed-headers: "*"
+#  allow-credentials: true
+#  max-age: 3600

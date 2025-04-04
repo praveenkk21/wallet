@@ -42,4 +42,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleDuplicateEntryException(DuplicateEntryException ex) {
         return new ResponseEntity<>(ex.getErrors(), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Map<String, String>> handleTxnException(RuntimeException ex) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("error", ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
 }

@@ -1,33 +1,46 @@
 spring:
- cloud:
-   gateway:
-     routes:
-       - id: TxnService
-         uri: lb://TXNSERVICE
-         predicates:
-           - Path=/txns/**
-         filters:
-           - AuthenticationFilter
+  cloud:
+    gateway:
+      routes:
+        - id: TxnService
+          uri: lb://TXNSERVICE
+          predicates:
+            - Path=/txns/**
+          filters:
+            - AuthenticationFilter
 
+        - id: UserService
+          uri: lb://USERSERVICE
+          predicates:
+            - Path=/users/**
+          filters:
+            - AuthenticationFilter
 
-       - id: UserService
-         uri: lb://USERSERVICE
-         predicates:
-           - Path=/users/**
-         filters:
-           - AuthenticationFilter
-
-       - id: WalletService
-         uri: lb://WALLETSERVICE
-         predicates:
-           - Path=/wallets/**
-
- application:
-   name: WALLETGATEWAY
+        - id: WalletService
+          uri: lb://WALLETSERVICE
+          predicates:
+            - Path=/wallets/**
+      global cors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+application:
+  name: WALLETGATEWAY
 
 discovery:
-      enabled: true
+  enabled: true
+
 eureka:
   client:
     service-url:
-      defaultZone : http://localhost:8761/eureka/
+      defaultZone: http://localhost:8762/eureka/
+
+

@@ -46,8 +46,8 @@ public class TxnServiceImpl {
 
         Wallet senderDetail, receiverDetail;
         try {
-            senderDetail = restTemplate.getForEntity("http://WalletService/wallets?userId={userId}", Wallet.class, senderId).getBody();
-            receiverDetail = restTemplate.getForEntity("http://WalletService/wallets?userId={userId}", Wallet.class, receiverId).getBody();
+            senderDetail = restTemplate.getForEntity("http://WALLETSERVICE/wallets?userId={userId}", Wallet.class, senderId).getBody();
+            receiverDetail = restTemplate.getForEntity("http://WALLETSERVICE/wallets?userId={userId}", Wallet.class, receiverId).getBody();
         } catch (Exception e) {
             throw new TxnExcepion("Wallet service unavailable: " + e.getMessage());
         }

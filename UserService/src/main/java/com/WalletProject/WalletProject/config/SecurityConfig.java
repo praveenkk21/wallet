@@ -43,20 +43,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        return http.csrf(csrf -> csrf.disable())
-//                .authorizeHttpRequests(authorize -> authorize
-//                        .requestMatchers("/users/addUpdate/**", "/txns/update", "/wallets/**","/authenticate").permitAll() // Allow these without auth
-//                        .anyRequest().authenticated())
-//                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
-//                .authenticationProvider(authenticationProvider())
-//                .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
-//                .build();
-//    }
-
     @Bean
     public PasswordEncoder getEncoder(){
         return new BCryptPasswordEncoder();

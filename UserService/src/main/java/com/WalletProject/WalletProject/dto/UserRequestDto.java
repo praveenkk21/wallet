@@ -1,6 +1,7 @@
 package com.WalletProject.WalletProject.dto;
 
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
@@ -26,16 +27,17 @@ import lombok.*;
 
 public class UserRequestDto {
 
-    @NotBlank(message = "Email shall be provided")
+    @NotBlank(message = "Email shall be provided",groups = CreateUSer.class)
+    @Email(message = "Email shall be valid")
     private String email;
 
-    @NotBlank(message = "contactNo shall be provided")
+    @NotBlank(message = "contactNo shall be provided",groups = CreateUSer.class)
     private String contactNo;
 
-    @NotBlank(message = "name shall be provided")
+    @NotBlank(message = "name shall be provided",groups = CreateUSer.class)
     private String name;
 
-    @NotBlank(message = "password shall be provided")
+    @NotBlank(message = "password shall be provided", groups = CreateUSer.class)
     private String password;
 
     private String authority;
