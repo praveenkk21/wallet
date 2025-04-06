@@ -15,7 +15,9 @@ public class RouteValidator {
             "/eureka",
             "/users/addUpdate",
             "/users/authenticate",
-            "/users/validate"
+            "/users/validate",
+            "/auth/github/login",
+            "/auth/github/callback"
     );
 
     public Predicate<ServerHttpRequest> isSecured =

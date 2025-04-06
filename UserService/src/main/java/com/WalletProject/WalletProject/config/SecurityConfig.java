@@ -34,7 +34,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/users/addUpdate", "/users/getUser/**", "/wallets/**","/users/authenticate","/users/validate").permitAll() // Allow these without auth
+                        .requestMatchers("/users/addUpdate", "/users/getUser/**", "/wallets/**","/users/authenticate","/users/validate","/auth/github/**").permitAll() // Allow these without auth
                         .anyRequest().authenticated()) // Require auth for others
                 .csrf(AbstractHttpConfigurer::disable)// Disable CSRF (if not using browser forms)
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // No session management
