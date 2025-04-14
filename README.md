@@ -2,6 +2,9 @@
 
 This project is a microservices-based system built with Java Spring Boot and various technologies like Kafka, MySQL, Spring Data JPA, Hibernate, and Simple Mail Sender. The system includes multiple services interacting through Kafka for communication, with JWT authentication managed by a central WalletGateway service.
 
+![Flow_diagram](https://github.com/user-attachments/assets/f248366d-792a-480f-a4c1-64e843ffd409)
+
+
 __Services Overview:__
 
 1. _WalletGateway_ (8086)
