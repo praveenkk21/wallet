@@ -31,7 +31,7 @@ public class NotificationConsumer {
 
         simpleMailMessage.setText("Wallet has been created for "+name);
         simpleMailMessage.setTo(email);
-        simpleMailMessage.setFrom("praveen@gmail.com");
+        simpleMailMessage.setFrom("admin@wallet.com");
         simpleMailMessage.setSubject("Wallet creation");
         javaMailSender.send(simpleMailMessage);
     }

@@ -14,7 +14,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/users/addUpdate/**", "/txns/update", "/wallets/**").permitAll() // Allow these without auth
+                        .requestMatchers("/users/addUpdate/**", "/txns/update", "/wallets/**","/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/swagger-ui.html").permitAll() // Allow these without auth
                         .anyRequest().authenticated()) // Require auth for others
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())

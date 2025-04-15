@@ -22,13 +22,13 @@
 		<developer/>
 	</developers>
 	<modules>
-		<module>NotificationService</module>
-		<module>WalletService</module>
-		<module>TxnService</module>
-		<module>UserService</module>
+		<module>notificationservice</module>
+		<module>walletservice</module>
+		<module>txnservice</module>
+		<module>userservice</module>
 		<module>utility</module>
-        <module>RouterService</module>
-		<module>WalletGateway</module>
+        <module>routerservice</module>
+		<module>walletgateway</module>
 	</modules>
 	<scm>
 		<connection/>
@@ -114,7 +114,11 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>com.google.cloud.tools</groupId>
+			<artifactId>jib-maven-plugin</artifactId>
+			<version>3.4.5</version>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -152,6 +156,11 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.4.5</version> <!-- or latest -->
 			</plugin>
 		</plugins>
 	</build>
