@@ -17,6 +17,8 @@ public class RouteValidator {
             "/users/authenticate",
             "/users/validate",
             "/auth/github/login",
+            "/auth/github/register",
+            "/auth/github/login/callback",
             "/auth/github/callback"
     );
 

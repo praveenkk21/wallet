@@ -76,14 +76,20 @@ public class GitHubAuthController {
         Optional<User> existingUserByUsername = userRepository.findByName(githubUsername);
         if (existingUserByUsername.isPresent()) {
             // Generate JWT and return it
-            String jwtToken = jwtService.generateToken(existingUserByUsername.get().getEmail());
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", "duplicate_github_username", "message", "An account with this GitHub username already exists.", "token", jwtToken));
+//            String jwt = jwtService.generateToken(existingUserByUsername.get().getEmail());
+//            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", "duplicate_github_username", "message", "An account with this GitHub username already exists.", "token", jwt));
+
+            String jwt = jwtService.generateToken(existingUserByUsername.get().getEmail());
+            return ResponseEntity.ok(Map.of("token", jwt, "username", githubUsername));
         }
 
         // Check if user exists in DB by Email
         Optional<User> existingUserByEmail = Optional.ofNullable(userRepository.findByEmail(githubEmail));
         if (existingUserByEmail.isPresent()) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", "duplicate_email", "message", "An account with this email already exists. Please log in with your existing credentials or contact support to link your GitHub account."));
+            String jwt = jwtService.generateToken(existingUserByEmail.get().getEmail());
+            return ResponseEntity.ok(Map.of("token", jwt, "username", existingUserByEmail.get().getName()));
+
+            //return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", "duplicate_email", "message", "An account with this email already exists. Please log in with your existing credentials or contact support to link your GitHub account."));
         }
 
         // Register new user
@@ -100,7 +106,7 @@ public class GitHubAuthController {
         userRepository.save(user);
 
         // Generate JWT and return it
-        String jwtToken = jwtService.generateToken(user.getEmail());
-        return ResponseEntity.ok(Map.of("token", jwtToken, "username", githubUsername));
+        String jwt = jwtService.generateToken(user.getEmail());
+        return ResponseEntity.ok(Map.of("token", jwt, "username", githubUsername));
     }
 }
